@@ -1,11 +1,9 @@
 import React from "react";
 import Projects from "./Projects";
-import data from "./data.json";
 import { useSelector } from "react-redux";
 
 const About = () => {
   const state = useSelector((state) => state.data);
-  console.log(state);
   return (
     <article id='About' className='About'>
       <h1 className='About_title'>About this project</h1>
