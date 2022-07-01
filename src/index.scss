@@ -1,0 +1,641 @@
+@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700&display=swap");
+$Mobile: 375px;
+$Desktop: 1204px;
+$moderateCyan: hsl(176, 50%, 47%);
+$darkCyan: hsl(176, 72%, 28%);
+$darkGray: hsl(0, 0%, 48%);
+$notSoBlack: hsl(0, 0, 0, 0.8);
+$shadow: 0px 1px 1px 1px hsla(0, 0, 0, 0.05);
+$fontText: clamp(0.85rem, 2vw, 1rem);
+$fontHead: clamp(1.3rem, 3vw, 2rem);
+@mixin transition {
+  transition: all 0.3s ease-in-out;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Commissioner", sans-serif;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+}
+button,
+input {
+  outline: none;
+}
+
+.App {
+  min-height: 100vh;
+  overflow: auto;
+  background-color: rgba(216, 216, 216, 0.315);
+  display: flex;
+  flex-direction: column;
+}
+.HeroImg {
+  background-image: url("./images//image-hero-mobile.jpg");
+  height: 300px;
+  background-size: 100% 100%;
+  @media (min-width: $Desktop) {
+    background-image: url("./images//image-hero-desktop.jpg");
+  }
+}
+.Navbar {
+  padding-block: 2.4em;
+  padding-inline: 1.5em;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  @media (min-width: $Desktop) {
+    padding-block: 3rem;
+    padding-inline: 9.5rem;
+  }
+  &_menuIcon {
+    cursor: pointer;
+    @media (min-width: $Desktop) {
+      display: none;
+    }
+  }
+  &_links {
+    list-style: none;
+    gap: 1rem;
+    color: white;
+    display: none;
+    font-size: 0.8rem;
+    font-weight: 300;
+    * {
+      cursor: pointer;
+    }
+    @media (min-width: $Desktop) {
+      display: flex;
+    }
+  }
+}
+
+.drop_shadow {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.281);
+}
+/* Menu Modal styles start*/
+.Menu {
+  @media (min-width: $Desktop) {
+    display: none;
+  }
+  z-index: 200;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 85%;
+  height: 200px;
+  border-radius: 0.5em;
+  background-color: hsla(0, 0, 100%, 1);
+  margin-inline: auto;
+  margin-top: 6rem;
+  &_Links {
+    height: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    li {
+      border-bottom: 1px solid lighten($darkGray, 40%);
+      padding: 1em;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: $notSoBlack;
+    }
+    li:last-child {
+      border-bottom: none !important;
+    }
+  }
+}
+/* Menu Modal styles Ends*/
+.Main_Container {
+  padding-inline: 2rem;
+  position: relative;
+  top: -60px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 700px;
+  align-self: center;
+}
+.Intro {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  position: relative;
+  z-index: 100;
+  background-color: white;
+  border-radius: 5%;
+  box-shadow: $shadow;
+  &_Logo {
+    position: absolute;
+    top: -30px;
+  }
+  &_title {
+    font-size: $fontHead;
+    padding-inline: 1em;
+    margin-block: 0.5rem;
+  }
+  &_subtitle {
+    color: $darkGray;
+    line-height: 1.8em;
+    font-size: $fontText;
+  }
+  &_btn {
+    display: flex;
+    margin-top: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 1rem;
+    width: 100%;
+    button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+    &-1 {
+      padding-inline: 2.3em;
+      background-color: $moderateCyan !important;
+      padding-block: 1.2em;
+      border-radius: 2em;
+      font-size: 0.8rem;
+      color: white;
+      font-weight: 700;
+      @include transition();
+      &:hover {
+        background-color: $darkCyan !important;
+      }
+      @media (min-width: $Desktop) {
+        font-size: 1rem;
+      }
+    }
+    .bookmarked {
+      @media (min-width: $Desktop) {
+        outline-style: solid;
+        outline-width: 1px;
+        outline-color: $moderateCyan;
+      }
+
+      circle {
+        fill: $darkCyan;
+      }
+      path {
+        fill: white;
+      }
+      p {
+        color: $darkCyan;
+      }
+    }
+    &-2 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      svg {
+        circle {
+          fill: #2f2f2f;
+        }
+        path {
+          fill: #b1b1b1;
+        }
+      }
+
+      @media (min-width: $Desktop) {
+        p {
+          display: block !important;
+        }
+        background-color: rgb(226, 226, 226) !important;
+        border-radius: 2000px;
+        width: 170px;
+        color: $darkGray;
+        font-size: $fontText;
+        font-weight: 700;
+      }
+      p {
+        display: none;
+      }
+    }
+  }
+}
+.Backers {
+  padding: 1.5rem;
+  padding-bottom: 2rem;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2%;
+  background-color: white;
+  box-shadow: 1px 1px 1px 1px hsla(0, 0, 0, 0.05);
+  @media (min-width: $Desktop) {
+    align-items: stretch;
+  }
+  &_contain {
+    @media (min-width: $Desktop) {
+      display: flex;
+      gap: 1rem;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+  }
+  &_title {
+    font-size: $fontHead;
+    font-weight: 700;
+    margin-bottom: 0.3em;
+  }
+  &_subTitle {
+    color: $darkGray;
+    font-size: $fontText;
+  }
+  &_div {
+    padding-block: 2em;
+    border-bottom: 1px solid lighten($darkGray, 40%);
+    @media (min-width: $Desktop) {
+      padding-block: 0;
+      text-align: start;
+      border-bottom: none;
+      padding-inline: 1em;
+      width: 100%;
+      border-right: 1px solid lighten($darkGray, 40%);
+    }
+  }
+  &_div:nth-child(3) {
+    border-bottom: none !important;
+    border-right: none !important;
+  }
+  &_progress {
+    align-self: stretch;
+    &_bar {
+      width: 100%;
+      margin-top: 1rem;
+      height: 13px;
+      border-radius: 2000px;
+      background-color: rgba(216, 216, 216, 0.315);
+    }
+    &_amount {
+      max-width: 100%;
+      height: 100%;
+      border-radius: 2000px;
+      background-color: $moderateCyan;
+    }
+  }
+}
+.About {
+  padding: 1.5rem;
+  box-shadow: 1px 1px 1px 1px hsla(0, 0, 0, 0.05);
+  background-color: white;
+  border-radius: 2%;
+  &_title {
+    margin-bottom: 1em;
+    font-size: $fontHead;
+  }
+  p {
+    color: $darkGray;
+    font-size: $fontText;
+    line-height: calc($fontText * 1.7);
+  }
+  &_p1 {
+    margin-bottom: 2em;
+  }
+}
+
+.Project,
+.Project_disabled {
+  margin-top: 2rem;
+  stroke-width: 2px;
+  border: 1px solid lighten($darkGray, 40%);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  &_head {
+    margin-bottom: 1.5em;
+    @media (min-width: $Desktop) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    &_title {
+      font-size: $fontText;
+      margin-bottom: 0.5em;
+    }
+    &_subTitle {
+      font-size: $fontText;
+      color: $moderateCyan;
+      font-weight: 500;
+    }
+  }
+  &_content {
+    margin-bottom: 2em;
+  }
+  &_bottom {
+    @media (min-width: $Desktop) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &_left {
+    margin-bottom: 2em;
+    display: flex;
+    align-items: center;
+    span {
+      font-size: calc($fontHead * 1.2);
+      font-weight: 700;
+      color: black;
+      margin-right: 0.1em;
+    }
+  }
+  &_btn {
+    border: none;
+    background-color: $moderateCyan;
+    padding-inline: 2em;
+    padding-block: 1em;
+    font-size: 0.9rem;
+    color: white;
+    border-radius: 2000px;
+    font-weight: 500;
+    margin-top: 1em;
+    cursor: pointer;
+    @include transition();
+    &:hover {
+      background-color: $darkCyan !important;
+    }
+  }
+}
+.Project_disabled {
+  opacity: 50%;
+  &_btn {
+    background-color: $darkGray;
+    cursor: not-allowed;
+  }
+}
+/*Selection Modal styles starts*/
+#section::-webkit-scrollbar {
+  visibility: hidden;
+}
+.Selection {
+  background-color: white;
+  position: absolute;
+  overflow: auto;
+  top: 250px;
+  left: 0;
+  margin: auto;
+  right: 0%;
+
+  z-index: 2100;
+  padding: 2rem;
+  border-radius: 0.5em;
+  width: 90vw;
+  max-width: 700px;
+  &_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    &_h1 {
+      font-size: $fontHead;
+      word-spacing: 0.1em;
+      letter-spacing: 0.05em;
+    }
+  }
+  &_title {
+    font-size: $fontText;
+    color: $darkGray;
+    line-height: calc($fontText * 1.7);
+    margin-bottom: 1rem;
+  }
+}
+.Cards,
+.Cards_disabled,
+.Cards_active {
+  margin-top: 2rem;
+  border: 1px solid lighten($darkGray, 40%);
+  border-radius: 1rem;
+  padding-block: 1.7rem;
+  position: relative;
+  cursor: pointer;
+  &_head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-inline: 1.7rem;
+
+    &_checkbox {
+      border: 1px solid hsla(0, 0, 0, 0.1);
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      &-checked {
+        width: 15px;
+        height: 15px;
+        align-self: center;
+
+        background-color: $moderateCyan;
+        border-radius: 50%;
+      }
+    }
+    &_title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @media (min-width: $Desktop) {
+        flex-direction: row;
+        gap: 1rem;
+      }
+      gap: 0.5rem;
+      &_h1 {
+        font-size: $fontText;
+        @include transition();
+        &:hover {
+          color: $moderateCyan;
+        }
+      }
+      &_p {
+        font-size: $fontText;
+        color: $moderateCyan;
+        font-weight: 500;
+      }
+    }
+  }
+  &_content {
+    font-size: $fontText;
+    color: $darkGray;
+    line-height: 1.7em;
+    margin-bottom: 1rem;
+    padding-inline: 1.7rem;
+  }
+  &_left {
+    padding-inline: 1.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: $darkGray;
+    @media (min-width: $Desktop) {
+      position: absolute;
+      top: 20px;
+      right: 50px;
+    }
+    span {
+      font-size: calc($fontHead - 3px);
+      font-weight: 700;
+      color: black;
+    }
+  }
+}
+.Cards_disabled {
+  opacity: 50%;
+  cursor: no-drop;
+}
+.Cards_active {
+  outline: auto;
+  outline-width: 2px;
+  outline-color: $moderateCyan;
+}
+/*Plege style starts*/
+.Card_pledge {
+  border-top: 1px solid rgb(226, 226, 226);
+  padding-block: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  @media (min-width: $Desktop) {
+    flex-direction: row;
+    padding-inline: 2rem;
+  }
+  &_title {
+    color: $darkGray;
+    margin-bottom: 1rem;
+    @media (min-width: $Desktop) {
+      width: 100%;
+    }
+  }
+  &_span {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    padding-inline: 2rem;
+    margin-top: 1rem;
+    &-div {
+      position: relative;
+      display: flex;
+      width: 50%;
+      p {
+        position: absolute;
+        align-self: center;
+        color: $darkGray;
+        padding-left: 1rem;
+        font-weight: 700;
+      }
+      input {
+        border: 1px solid $darkGray;
+        padding-block: 1rem;
+        width: 100%;
+        border-radius: 2000px;
+        text-align: center;
+        margin-right: 0.5rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        &:focus:focus-within:focus-visible {
+          outline: auto;
+          outline-width: 0.5px;
+          outline-color: $moderateCyan;
+        }
+      }
+      .error {
+        outline: auto;
+        outline-width: 2px;
+        outline-color: red !important;
+      }
+    }
+
+    button {
+      background-color: $moderateCyan;
+      border: none;
+      padding-block: 1rem;
+      width: 50%;
+      border-radius: 2000px;
+      color: white;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      @include transition();
+      &:hover {
+        background-color: $darkCyan;
+      }
+    }
+  }
+}
+/*Plege style ends*/
+
+/* Section Modal styles ends*/
+/*Thanks Popup styles starts*/
+.Thanks {
+  z-index: 2200;
+  margin-top: 3rem;
+  position: absolute;
+  width: 90vw;
+  top: 400px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: white;
+  border-radius: 3%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  &_icon {
+    margin-bottom: 1.5rem;
+  }
+  &_title {
+    font-size: calc($fontText + 5px);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  &_content {
+    font-size: $fontText;
+    line-height: calc($fontText * 1.7);
+    color: $darkGray;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  &_btn {
+    border: none;
+    background-color: $moderateCyan;
+    padding-inline: 2.2em;
+    padding-block: 1em;
+    border-radius: 2000px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: white;
+    margin-top: 1rem;
+    cursor: pointer;
+    @include transition();
+    &:hover {
+      background-color: $darkCyan;
+    }
+  }
+}
+/*Thanks Popup styles ends*/
