@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Screenshot
 
-![Crowd Funding](./src/../my-app/src/images/Crowdfunding.png)
+![Crowd Funding](./src//images/Crowdfunding.png)
 
 ### Links
 
